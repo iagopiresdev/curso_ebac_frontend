@@ -2,7 +2,6 @@ let tasks = $('#tasks_container');
 
 function add(){
     let text = $('#text_task').val();
-
     if (text == '') {
         alert('Please, enter a task.');
         return;
