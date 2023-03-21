@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery Plugin</title>
+    <style>
+        label {
+            display: block;
+        }
+        input {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <label for="cpf">CPF</label>
+        <input type="text" name="cpf" id="cpf">
+
+        <label for="cep">CEP</label>
+        <input type="text" name="cep" id="cep">
+
+        <button type="button">Enviar</button>
+    </form>
+    
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="jsplugins/jquery.validate.min.js"></script>
+<script src="jsplugins/jquery.mask.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#cpf').mask('000.000.000-00');
+        $('#cep').mask('00000-000');
+        $('form').validate({
+            rules: {
+                cpf: {
+                    required: true,
+                    minlength: 14
+                },
+                cep: {
+                    required: true,
+                    minlength: 9
+                }
+            },
+            messages: {
+                cpf: {
+                    required: "Campo obrigatório",
+                    minlength: "Digite um CPF válido"
+                },
+                cep: {
+                    required: "Campo obrigatório",
+                    minlength: "Digite um CEP válido"
+                }
+            }
+        });
+    });
+</script>
+</html>
