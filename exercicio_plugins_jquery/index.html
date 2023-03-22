@@ -19,7 +19,16 @@
     </style>
 </head>
 <body>
-    <form action="">
+    <form>
+        <label for="nome">Nome Completo</label>
+        <input type="text" name="nome" id="nome">
+        
+        <label for="email">E-mail</label>
+        <input type="email" name="email" id="email">
+
+        <label for="telefone">Telefone</label>
+        <input type="text" name="telefone" id="telefone">
+        
         <label for="cpf">CPF</label>
         <input type="text" name="cpf" id="cpf">
 
@@ -35,10 +44,33 @@
 <script src="jsplugins/jquery.mask.min.js"></script>
 <script>
     $(document).ready(function(){
+        $('#nome').mask('A', {
+            translation: {
+                'A': { pattern: /[\w\s]/, recursive: true }
+            }
+        });
+        $('#email').mask('A', {
+            translation: {
+                'A': { pattern: /[\w@\-.+]/, recursive: true }
+            }
+        });
+        $('#telefone').mask('(00) 00000-0000');
         $('#cpf').mask('000.000.000-00');
         $('#cep').mask('00000-000');
         $('form').validate({
             rules: {
+                nome:{
+                    required: true,
+                    minlength: 3
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                telefone: {
+                    required: true,
+                    minlength: 15
+                },
                 cpf: {
                     required: true,
                     minlength: 14
@@ -49,6 +81,18 @@
                 }
             },
             messages: {
+                nome: {
+                    required: "Campo obrigatório",
+                    minlength: "Digite um nome válido"
+                },
+                email: {
+                    required: "Campo obrigatório",
+                    email: "Digite um e-mail válido"
+                },
+                telefone: {
+                    required: "Campo obrigatório",
+                    minlength: "Digite um telefone válido"
+                },
                 cpf: {
                     required: "Campo obrigatório",
                     minlength: "Digite um CPF válido"
