@@ -32,6 +32,9 @@
         <label for="cpf">CPF</label>
         <input type="text" name="cpf" id="cpf">
 
+        <label for="endereco">Endereço Completo</label>
+        <input type="text" name="endereco" id="endereco">
+
         <label for="cep">CEP</label>
         <input type="text" name="cep" id="cep">
 
@@ -56,6 +59,11 @@
         });
         $('#telefone').mask('(00) 00000-0000');
         $('#cpf').mask('000.000.000-00');
+        $('#endereco').mask('A', {
+            translation: {
+                'A': { pattern: /[\w\s]/, recursive: true }
+            }
+        });
         $('#cep').mask('00000-000');
         $('form').validate({
             rules: {
@@ -74,6 +82,10 @@
                 cpf: {
                     required: true,
                     minlength: 14
+                },
+                endereco: {
+                    required: true,
+                    minlength: 8
                 },
                 cep: {
                     required: true,
@@ -96,6 +108,10 @@
                 cpf: {
                     required: "Campo obrigatório",
                     minlength: "Digite um CPF válido"
+                },
+                endereco: {
+                    required: "Campo obrigatório",
+                    minlength: "Digite um endereço válido"
                 },
                 cep: {
                     required: "Campo obrigatório",
